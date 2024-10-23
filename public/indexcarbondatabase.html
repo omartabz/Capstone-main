@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="alpinecarbondatabase.js"></script>
+  <link rel="stylesheet" href="stylecarbondatabase.css">
+
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="../PHOTO-2024-09-11-08-05-43 (1).jpg" alt="CarbonAware Technologies">
+        </div>
+        <div class="logo-content">
+          <h2>CarbonAware Technologies</h2>
+          <p>Monitor, Purchase, and Manage Your Carbon Credits Efficiently</p>
+
+        </div>
+      </div>
+
+      <!-- Hamburger icon for small screens -->
+      <div class="hamburger-icon" onclick="toggleNav()">
+        &#9776; <!-- Unicode for hamburger icon -->
+      </div>
+
+      <div class="nav-features">
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/index.html">Home</a></div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/AboutUs.html">About Us</a>
+        </div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/service.html">Services</a>
+        </div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/contact.html">Contact</a></div>
+        <div id="currentUser"></div>
+      </div>
+
+      <!-- <div class="search-login">
+      <input type="search" placeholder="Search">
+      <button class="login-btn">Log In</button>
+    </div> -->
+    </nav>
+  </header>
+
+  <div x-data="CarbonTracker">
+    <div class="form-container">
+      <h1 style="text-align: center;">Carbon Project Registry</h1>
+
+      <h1 style="text-align: center;">Listed Projects</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Scope</th>
+            <th>Credits Available</th>
+            <th>Credits Issued</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="projects in projects">
+            <tr>
+              <td x-text="projects.project_id"></td>
+              <td x-text="projects.project_name"></td>
+              <td x-text="projects.scope"></td>
+              <td x-text="projects.total_credits_available"></td>
+              <td x-text="projects.total_credits_issued"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+
+      <!-- Create Project -->
+      <div style="text-align: center;">
+        <h2>Create Project</h2>
+        <form action="">
+          <label for="newProjectId">Project ID</label>
+          <input type="text" id="newProjectId" x-model="newProjectId" placeholder="Enter Project ID">
+          <label for="newProjectName">Project Name</label>
+          <input type="text" id="newProjectName" x-model="newProjectName" placeholder="Enter Project Name">
+          <label for="newScope">Scope</label>
+          <input type="text" id="newScope" x-model="newScope" placeholder="Forestry/Transportation/Chemical">
+          <label for="newCreditsAvailable">Credits Available</label>
+          <input type="number" id="newCreditsAvailable" x-model="newCreditsAvailable"
+            placeholder="Enter credits available">
+          <label for="newCreditsIssued">Credits Issued</label>
+          <input type="number" id="newCreditsIssued" x-model="newCreditsIssued" placeholder="Enter credits issued">
+          <button @click="createProject()">Create Project</button>
+
+          <p x-text="createStatus"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Remove Project -->
+    <div style="text-align: center;">
+      <form action="">
+        <h2>Remove Project</h2>
+        <label>Project to Remove:</label>
+        <input type="text" placeholder="Enter project id" x-model="deleteProject" id="deleteProject">
+        <button x-on:click="removeProject()">Delete Project</button>
+        <p x-text="deleteStatus"></p>
+      </form>
+    </div>
+
+
+    <!-- Update Project Databse -->
+    <div style="text-align: center;">
+      <form action="">
+        <h2 style="text-align: center;">Update Project</h2>
+        <label>Project ID: </label> <input type="text" placeholder="ACR1000" x-model="updateProjectId"
+          id="updateProjectId">
+        <label>New Project Name: </label> <input type="text" placeholder="Enter Project Name"
+          x-model="updateProjectName" id="updateProjectName">
+        <label>Scope</label> <input type="text" placeholder="Forestry/Transport/Chemical" x-model="updateScope"
+          id="updateScope">
+        <label>Credits Available: </label>
+        <input type="number" placeholder="1,000,000" x-model="updateCreditsAvailable" id="updateCreditsAvailable">
+        <label>Credits Issued: </label>
+        <input type="number" placeholder="1,000,000" x-model="updateCreditsIssued" id="updateCreditIssued">
+        <button x-on:click="updateProject()">Update Project</button>
+        <p x-text="updateStatus"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer-container">
+    <div class="footer-contact-info">
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Address:</strong> 69 Kingsway Ave, Auckland Park, Johannesburg, 2092</p>
+        <p><strong>Phone:</strong> +27 71529 3562</p>
+        <p><strong>Email:</strong> TONK@yourcompany.com</p>
+      </div>
+      <div class="footer-social">
+        <h2>Follow Us</h2>
+        <p>Stay connected through our social platforms:</p>
+        <ul class="social-icons">
+          <li><a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a></li>
+          <li><a href="#"><img src="../../images/Twitter.png" alt="Twitter"></a></li>
+          <li><a href="#"><img src="../../images/linkdin.png" alt="LinkedIn"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Carbon Credits Tracker. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    async function getProjects() {
+      const response = await fetch('/api/carbon/projects');
+      const data = await response.json();
+      // Handle displaying projects as needed
+    }
+
+    async function addProject(projectData) {
+      const response = await fetch('/api/carbon/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        showMessage(data.message);
+      } else {
+        console.error('Error:', data.message);
+      }
+    }
+
+    async function deleteProject(projectId) {
+      const response = await fetch('/api/carbon/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ project_id: projectId }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        showMessage(data.message);
+      } else {
+        console.error('Error:', data.message);
+      }
+    }
+
+    async function updateProject(projectData) {
+      const response = await fetch('/api/carbon/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projectData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        showMessage(data.message);
+      } else {
+        console.error('Error:', data.message);
+      }
+    }
+
+    function showMessage(message) {
+      const messageContainer = document.getElementById('message-container');
+      messageContainer.innerText = message;
+      messageContainer.style.display = 'block';
+
+      setTimeout(() => {
+        messageContainer.style.display = 'none';
+      }, 3000);
+    }
+
+    // Optionally, call getProjects on page load to display existing projects
+    // getProjects();
+  </script>
+
+</body>
+
+</html>

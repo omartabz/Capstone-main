@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/Fraud/public/style.css">
+    <script defer src="fraud-detection-dashboard.js"></script>
+    <script integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"> </script>
+    <style>
+        input{
+  width: 90%;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  /* margin-right: 1em; */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 2.5em;
+
+}
+button {
+    display: block;
+    background-color: #333;
+    padding: 1em;
+    margin: 0 auto;
+    color: white;
+    border-radius: 1em;
+    border: 1px solid #333;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 1px solid gray;
+  color: black;
+}
+input:focus {
+  border-color: gray; 
+  outline: none;
+}
+
+label {
+  
+  display: block;
+  margin-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+form {
+  background-color: rgba(51, 51, 51, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 5em;
+}
+
+
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <nav class="navbar">
+      <div class="logo-container">
+      <div class="logo">
+        <img src="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/PHOTO-2024-09-11-08-05-43 (1).jpg" alt="CarbonAware Technologies">
+          </div>
+        <div class="logo-content">
+        <h2>CarbonAware Technologies</h2>
+        <p>Monitor, Purchase, and Manage Your Carbon Credits Efficiently</p>
+    
+    </div></div>
+      
+       <!-- Hamburger icon for small screens -->
+    <div class="hamburger-icon" onclick="toggleNav()">
+        &#9776; <!-- Unicode for hamburger icon -->
+      </div>
+
+      <div class="nav-features">
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/index.html">Home</a></div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/AboutUs.html">About Us</a></div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/service.html">Services</a></div>
+        <div><a href="/home/raphaeltabengwa/Capstone temp/capstone-draft-2/frontEnd_html/contact.html">Contact</a></div>
+        <div id="currentUser"></div>
+      </div>
+  
+      <!-- <div class="search-login">
+        <input type="search" placeholder="Search">
+        <button class="login-btn">Log In</button>
+      </div> -->
+    </nav>
+  </header>
+  
+
+    <h1>Fraud Detection Dashboard</h1>
+    <form id="transaction-form">
+        <label for="amount">Transaction Amount:</label>
+        <input type="number" id="amount" required>
+        
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" required>
+
+        <button type="button" id="submit-transaction">Submit Transaction</button>
+    </form>
+
+    <div id="alert-result"></div>
+
+    <footer class="footer-container">
+        <div class="footer-contact-info">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p><strong>Address:</strong> 69 Kingsway Ave, Auckland Park, Johannesburg, 2092</p>
+                <p><strong>Phone:</strong> +27 71529 3562</p>
+                <p><strong>Email:</strong> TONK@yourcompany.com</p>
+            </div>
+            <div class="footer-social">
+                <h2>Follow Us</h2>
+                <p>Stay connected through our social platforms:</p>
+                <ul class="social-icons">
+                    <li><a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a></li>
+                    <li><a href="#"><img src="../images/Twitter.png" alt="Twitter"></a></li>
+                    <li><a href="#"><img src="../images/linkdin.png" alt="LinkedIn"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Carbon Credits Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- <script src="fraud-detection-dashboard.js"></script> -->
+</body>
+</html>
